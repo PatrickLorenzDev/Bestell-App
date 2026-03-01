@@ -1,0 +1,306 @@
+:root {
+  --orange: #FF8000;
+  --text-dark: #1a1a1a;
+  --bg-light: #f9f9f9;
+  --cart-width: 300px;
+  --navbar-height: 60px;
+}
+
+/* ─── NAVBAR ─────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--orange);
+  padding: 1rem 2rem;
+  height: var(--navbar-height);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar__logo {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.navbar__nav-list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.navbar__nav-list a {
+  color: #fff;
+  font-weight: 500;
+}
+
+.navbar__menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ─── LAYOUT ─────────────────────────────── */
+.page-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 auto;
+}
+
+.menu-section {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ─── RESTAURANT BANNER ──────────────────── */
+.restaurant-banner {
+  position: relative;
+  height: 200px;
+}
+
+.restaurant-banner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.restaurant-banner__logo {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  border: 3px solid #fff;
+}
+
+.restaurant-banner__logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── RESTAURANT INFO ────────────────────── */
+.restaurant-info {
+  padding: 2.5rem 2rem 1rem;
+}
+
+.restaurant-info__name {
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.restaurant-info__rating {
+  color: var(--orange);
+  margin-top: 0.25rem;
+}
+
+/* ─── KATEGORIE NAVIGATION ───────────────── */
+.category-nav {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.75rem 2rem;
+  border-bottom: 2px solid #eee;
+}
+
+.category-nav__link {
+  color: var(--text-dark);
+  font-weight: 500;
+  padding-bottom: 0.5rem;
+}
+
+.category-nav__link--active {
+  color: var(--orange);
+  border-bottom: 2px solid var(--orange);
+}
+
+/* ─── MENU KATEGORIE ─────────────────────── */
+.menu-category {
+  margin-bottom: 2rem;
+}
+
+.menu-category__banner {
+  height: 150px;
+}
+
+.menu-category__banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-category__heading {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  color: var(--text-dark);
+}
+
+/* ─── MENU LISTE & ITEMS ─────────────────── */
+.menu-list {
+  list-style: none;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-item__name {
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.menu-item__description {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.menu-item__price {
+  color: var(--orange);
+  font-weight: bold;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.menu-item__add-btn {
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-size: 1.75rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.menu-item__add-btn:hover {
+  opacity: 0.7;
+}
+
+/* ─── WARENKORB ──────────────────────────── */
+.cart {
+  width: var(--cart-width);
+  flex-shrink: 0;
+  position: sticky;
+  top: var(--navbar-height);
+  height: calc(100vh - var(--navbar-height));
+  overflow-y: auto;
+  padding: 1.5rem;
+  border-left: 1px solid #eee;
+  background: #fff;
+}
+
+.cart__heading {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.cart__list {
+  list-style: none;
+}
+
+.cart__empty {
+  color: #999;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.cart__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart__item-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.cart__item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart__btn {
+  background: none;
+  border: 1px solid #eee;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.cart__btn--delete {
+  border: none;
+  color: #999;
+}
+
+.cart__item-quantity {
+  font-size: 0.9rem;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.cart__item-price {
+  font-weight: bold;
+  color: var(--text-dark);
+}
+
+/* ─── WARENKORB ZUSAMMENFASSUNG ──────────── */
+.cart__summary {
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.cart__summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.cart__summary-row--total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+}
+
+/* ─── BESTELLBUTTON ──────────────────────── */
+.cart__order-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.875rem;
+  background-color: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cart__order-btn:hover {
+  opacity: 0.9;
+}
