@@ -4,21 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bestell App – Paradise Noodles</title>
+  <link rel="icon" href="./assets/icons/icons8-messer-gabel-64.png" type="image/x-icon">
   <link rel="stylesheet" href="./styles/standard.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="navbar__logo">Bestell App</div>
+<header class="navbar">
+  <div class="navbar__inner">
+    <div class="navbar__logo">🍴 Bestell App</div>
     <button class="navbar__menu-btn">☰</button>
-  </header>
+  </div>
+</header>
 
-  <!-- HAUPTBEREICH -->
+
+  <!-- Main Content -->
   <div class="page-wrapper">
 
-    <!-- LINKE SEITE: Speisekarte -->
+    <!-- Left Site: Menu -->
     <main class="menu-section" id="main-content">
 
       <!-- Hero Banner -->
@@ -32,82 +36,93 @@
       <!-- Restaurant Info -->
       <section class="restaurant-info">
         <h1 class="restaurant-info__name">Paradise Noodles</h1>
+        <p class="restaurant-info__description">Authentische Küche – direkt zu dir nach Hause.</p>
         <p class="restaurant-info__rating">⭐ 4,2 von 5 Sternen</p>
-      </section>
-
-      <!-- Kategorie-Navigation -->
-      <nav class="category-nav">
-        <a class="category-nav__link category-nav__link--active" href="#hauptgerichte">Hauptgerichte</a>
-        <a class="category-nav__link" href="#beilagen">Beilagen</a>
-      </nav>
-
-      <!-- Kategorie: Hauptgerichte -->
-      <section class="menu-category" id="hauptgerichte">
-        <div class="menu-category__banner">
-          <img class="menu-category__banner-img" src="./assets/img/21_italian_57.avif" alt="Auswahl an Hauptgerichten">
+        <div class="restaurant-info__delivery">
+          <span class="restaurant-info__delivery-item">🕐 30–45 Min.</span>
+          <span class="restaurant-info__delivery-item">🛵 Lieferung: 1,99 €</span>
+          <span class="restaurant-info__delivery-item">🛒 Mindestbestellwert: 10,00 €</span>
         </div>
-        <h2 class="menu-category__heading">Hauptgerichte</h2>
-
-        <ul class="menu-list">
-
-          <li class="menu-item">
-            <div class="menu-item__info">
-              <h3 class="menu-item__name">Pizza Krabben</h3>
-              <p class="menu-item__description">mit Krabben und Peperoni</p>
-              <span class="menu-item__price">9.50&nbsp;€</span>
-            </div>
-            <button class="menu-item__add-btn" onclick="addToCart(1)">+</button>
-          </li>
-
-          <li class="menu-item">
-            <div class="menu-item__info">
-              <h3 class="menu-item__name">Pizza Margherita</h3>
-              <p class="menu-item__description">mit Mozzarella</p>
-              <span class="menu-item__price">5.90&nbsp;€</span>
-            </div>
-            <button class="menu-item__add-btn" onclick="addToCart(2)">+</button>
-          </li>
-
-          <li class="menu-item">
-            <div class="menu-item__info">
-              <h3 class="menu-item__name">Pizza Diavolo (scharf)</h3>
-              <p class="menu-item__description">mit Salami, Zwiebeln, Peperoni und Knoblauch</p>
-              <span class="menu-item__price">8.50&nbsp;€</span>
-            </div>
-            <button class="menu-item__add-btn" onclick="addToCart(3)">+</button>
-          </li>
-
-          <li class="menu-item">
-            <div class="menu-item__info">
-              <h3 class="menu-item__name">Pizzabrötchen</h3>
-              <p class="menu-item__description">mit Käse und Knoblauch</p>
-              <span class="menu-item__price">12.90&nbsp;€</span>
-            </div>
-            <button class="menu-item__add-btn" onclick="addToCart(4)">+</button>
-          </li>
-
-        </ul>
       </section>
 
-      <!-- Kategorie: Beilagen -->
-      <section class="menu-category" id="beilagen">
-        <h2 class="menu-category__heading">Beilagen</h2>
-        <ul class="menu-list">
-          <!-- weitere Items analog -->
-        </ul>
-      </section>
+      <!-- Category-Navigation -->
+      <nav class="category-nav" id="category-nav"></nav>
+
+      <!-- Menu Categorie -->
+      <div id="menu-categories"></div>
 
     </main>
 
-    <!-- RECHTE SEITE: Warenkorb -->
+    <!-- Left Site: Basket (Desktop) -->
     <aside class="cart">
       <h2 class="cart__heading">Warenkorb</h2>
       <ul class="cart__list" id="cart__list"></ul>
       <div class="cart__summary" id="cart__summary"></div>
-      <button class="cart__order-btn">Jetzt bestellen</button>
+      <button class="cart__order-btn" onclick="placeOrder()">Jetzt bestellen</button>
     </aside>
 
   </div>
+
+  <!-- RESPONSIVE: Basket-Button -->
+  <div class="cart-mobile-bar" id="cart-mobile-bar">
+    <button class="cart-mobile-bar__btn" onclick="openMobileCart()">
+      🛒 Warenkorb anzeigen
+      <span class="cart-mobile-bar__total" id="cart-mobile-total"></span>
+    </button>
+  </div>
+
+  <!-- RESPONSIVE: Basket Dialog -->
+  <div class="cart-dialog" id="cart-dialog">
+    <div class="cart-dialog__box">
+      <div class="cart-dialog__header">
+        <h2 class="cart-dialog__heading">Warenkorb</h2>
+        <button class="cart-dialog__close-btn" onclick="closeMobileCart()">✕</button>
+      </div>
+      <ul class="cart__list" id="cart__list-mobile"></ul>
+      <div class="cart__summary" id="cart__summary-mobile"></div>
+      <button class="cart__order-btn" onclick="placeOrder()">Jetzt bestellen</button>
+    </div>
+  </div>
+
+  <!-- Orderconfirmation DIALOG -->
+  <div class="order-dialog" id="order-dialog">
+    <div class="order-dialog__box">
+      <div class="order-dialog__icon">✅</div>
+      <h2 class="order-dialog__heading">Bestellung aufgegeben!</h2>
+      <p class="order-dialog__text">Vielen Dank für deine Testbestellung bei Paradise Noodles. Dein Essen ist in 30–45 Min. bei dir.</p>
+      <button class="order-dialog__btn" onclick="closeOrderDialog()">Alles klar!</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__brand">
+        <span class="footer__logo">Paradise Noodles</span>
+        <p class="footer__tagline">Authentische Küche – direkt zu dir nach Hause.</p>
+      </div>
+      <div class="footer__info">
+        <h3 class="footer__heading">Kontakt</h3>
+        <p class="footer__text">📍 Musterstraße 12, 60311 Frankfurt am Main</p>
+        <p class="footer__text">📞 069 123 456 78</p>
+        <p class="footer__text"><a class="footer__link" href="mailto:info@paradisenoodles.de">✉️ info@paradisenoodles.de</a></p>
+      </div>
+      <div class="footer__info">
+        <h3 class="footer__heading">Öffnungszeiten</h3>
+        <p class="footer__text">Mo – Fr: 11:00 – 22:00 Uhr</p>
+        <p class="footer__text">Sa – So: 12:00 – 23:00 Uhr</p>
+      </div>
+      <div class="footer__info">
+        <h3 class="footer__heading">Rechtliches</h3>
+        <a class="footer__link" href="#">Impressum</a>
+        <a class="footer__link" href="#">Datenschutz</a>
+        <a class="footer__link" href="#">AGB</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 Paradise Noodles. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
