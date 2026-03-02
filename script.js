@@ -28,20 +28,26 @@ const menuData = {
   }
 };
 
+
 let cart = [];
 const deliveryCost = 1.99;
+
 
 
 function buildCategoryNav() {
   let navHTML = "";
   let isFirst = true;
+  let keys = Object.keys(menuData);
 
-  for (let key in menuData) {
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i];
     let activeClass = "";
+
     if (isFirst) {
       activeClass = " category-nav__link--active";
       isFirst = false;
     }
+
     navHTML += "<a class='category-nav__link" + activeClass + "' href='#" + key + "'>";
     navHTML += menuData[key].label;
     navHTML += "</a>";
@@ -49,6 +55,7 @@ function buildCategoryNav() {
 
   document.getElementById("category-nav").innerHTML = navHTML;
 }
+
 
 
 function buildMenuItemHTML(item) {
@@ -64,25 +71,34 @@ function buildMenuItemHTML(item) {
 }
 
 
+
 function buildMenuCategories() {
   let categoriesHTML = "";
+  let keys = Object.keys(menuData);
 
-  for (let key in menuData) {
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i];
     let category = menuData[key];
+
     categoriesHTML += "<section class='menu-category' id='" + key + "'>";
     categoriesHTML += "<div class='menu-category__banner'>";
     categoriesHTML += "<img class='menu-category__banner-img' src='" + category.banner + "' alt='" + category.label + "'>";
     categoriesHTML += "</div>";
     categoriesHTML += "<h2 class='menu-category__heading'>" + category.label + "</h2>";
     categoriesHTML += "<ul class='menu-list'>";
-    for (let id in category.items) {
-      categoriesHTML += buildMenuItemHTML(category.items[id]);
+
+    let itemKeys = Object.keys(category.items);
+    for (let j = 0; j < itemKeys.length; j++) {
+      let itemKey = itemKeys[j];
+      categoriesHTML += buildMenuItemHTML(category.items[itemKey]);
     }
+
     categoriesHTML += "</ul></section>";
   }
 
   document.getElementById("menu-categories").innerHTML = categoriesHTML;
 }
+
 
 
 function buildCartItemHTML(item) {
@@ -100,6 +116,7 @@ function buildCartItemHTML(item) {
 }
 
 
+
 function buildSummaryHTML(subtotal) {
   let total = subtotal + deliveryCost;
   let html = "";
@@ -110,6 +127,7 @@ function buildSummaryHTML(subtotal) {
 }
 
 
+
 function calculateSubtotal() {
   let sum = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -117,6 +135,7 @@ function calculateSubtotal() {
   }
   return sum;
 }
+
 
 
 function renderCart() {
@@ -140,6 +159,7 @@ function renderCart() {
 }
 
 
+
 function updateMobileBar(subtotal) {
   let totalEl = document.getElementById("cart-mobile-total");
   if (cart.length === 0) {
@@ -150,9 +170,13 @@ function updateMobileBar(subtotal) {
 }
 
 
+
 function addToCart(id) {
   let product = null;
-  for (let key in menuData) {
+  let keys = Object.keys(menuData);
+
+  for (let i = 0; i < keys.length; i++) {
+    let key = keys[i];
     if (menuData[key].items[id]) {
       product = menuData[key].items[id];
     }
@@ -177,6 +201,7 @@ function addToCart(id) {
 }
 
 
+
 function changeQuantity(id, delta) {
   let item = null;
   for (let i = 0; i < cart.length; i++) {
@@ -198,6 +223,7 @@ function changeQuantity(id, delta) {
 }
 
 
+
 function removeItem(id) {
   let newCart = [];
   for (let i = 0; i < cart.length; i++) {
@@ -208,6 +234,7 @@ function removeItem(id) {
   cart = newCart;
   renderCart();
 }
+
 
 
 function placeOrder() {
@@ -222,9 +249,11 @@ function placeOrder() {
 }
 
 
+
 function openOrderDialog() {
   document.getElementById("order-dialog").classList.add("order-dialog--open");
 }
+
 
 
 function closeOrderDialog() {
@@ -232,14 +261,17 @@ function closeOrderDialog() {
 }
 
 
+
 function openMobileCart() {
   document.getElementById("cart-dialog").classList.add("cart-dialog--open");
 }
 
 
+
 function closeMobileCart() {
   document.getElementById("cart-dialog").classList.remove("cart-dialog--open");
 }
+
 
 
 buildCategoryNav();
