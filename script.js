@@ -240,40 +240,27 @@ function removeItem(id) {
 function placeOrder() {
   cart = [];
   renderCart();
-  closeMobileCart();
-  openOrderDialog();
+  toggleDialog('cart-dialog', false);
+  toggleDialog('order-dialog', true);
 
   setTimeout(function() {
-    closeOrderDialog();
+    toggleDialog('order-dialog', false);
   }, 5000);
 }
 
-
-
-function openOrderDialog() {
-  document.getElementById("order-dialog").classList.add("order-dialog--open");
+function toggleDialog(dialogId, open) {
+  const dialog = document.getElementById(dialogId);
+  dialog.classList.toggle(`${dialogId}--open`, open);
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 
 
 
-function closeOrderDialog() {
-  document.getElementById("order-dialog").classList.remove("order-dialog--open");
+
+function init() {
+  buildCategoryNav();
+  buildMenuCategories();
+  renderCart();
 }
 
-
-
-function openMobileCart() {
-  document.getElementById("cart-dialog").classList.add("cart-dialog--open");
-}
-
-
-
-function closeMobileCart() {
-  document.getElementById("cart-dialog").classList.remove("cart-dialog--open");
-}
-
-
-
-buildCategoryNav();
-buildMenuCategories();
-renderCart();
+document.addEventListener('DOMContentLoaded', init);
