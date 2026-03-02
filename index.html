@@ -10,7 +10,6 @@
 </head>
 <body>
 
-
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="navbar__inner">
@@ -19,14 +18,11 @@
     </div>
   </header>
 
-
   <!-- Main Content -->
   <div class="page-wrapper">
 
-
     <!-- Left Site: Menu -->
     <main class="menu-section" id="main-content">
-
 
       <!-- Hero Banner -->
       <div class="restaurant-banner">
@@ -35,7 +31,6 @@
           <img class="restaurant-banner__logo-img" src="./assets/img/chinese-take-away-box-mit-stabchen-at2bpd.jpg" alt="Logo von Paradise Noodles">
         </div>
       </div>
-
 
       <!-- Restaurant Info -->
       <section class="restaurant-info">
@@ -49,17 +44,13 @@
         </div>
       </section>
 
-
       <!-- Category-Navigation -->
       <nav class="category-nav" id="category-nav"></nav>
-
 
       <!-- Menu Categories -->
       <div id="menu-categories"></div>
 
-
     </main>
-
 
     <!-- Right Side: Basket (Desktop) -->
     <aside class="cart">
@@ -69,9 +60,7 @@
       <button class="cart__order-btn" onclick="placeOrder()">Jetzt bestellen</button>
     </aside>
 
-
   </div>
-
 
   <!-- RESPONSIVE: Basket-Button -->
   <div class="cart-mobile-bar" id="cart-mobile-bar">
@@ -80,7 +69,6 @@
       <span class="cart-mobile-bar__total" id="cart-mobile-total"></span>
     </button>
   </div>
-
 
   <!-- RESPONSIVE: Basket Dialog -->
   <div class="cart-dialog" id="cart-dialog">
@@ -95,7 +83,6 @@
     </div>
   </div>
 
-
   <!-- Orderconfirmation DIALOG -->
   <div class="order-dialog" id="order-dialog">
     <div class="order-dialog__box">
@@ -106,6 +93,32 @@
     </div>
   </div>
 
+  <!-- ─── TEMPLATES ─────────────────────────── -->
+
+  <!-- Template: Kategorie -->
+  <template id="tmpl-category">
+    <section class="menu-category">
+      <div class="menu-category__banner">
+        <img class="menu-category__banner-img" src="" alt="">
+      </div>
+      <h2 class="menu-category__heading"></h2>
+      <ul class="menu-list"></ul>
+    </section>
+  </template>
+
+  <!-- Template: Warenkorb-Item -->
+  <template id="tmpl-cart-item">
+    <li class="cart__item">
+      <span class="cart__item-name"></span>
+      <div class="cart__item-controls">
+        <button class="cart__btn cart__btn--minus">-</button>
+        <span class="cart__item-quantity"></span>
+        <button class="cart__btn cart__btn--plus">+</button>
+        <button class="cart__btn cart__btn--delete">🗑</button>
+      </div>
+      <span class="cart__item-price"></span>
+    </li>
+  </template>
 
   <!-- Footer -->
   <footer class="footer">
@@ -136,7 +149,6 @@
       <p class="footer__copyright">© 2026 Paradise Noodles. Alle Rechte vorbehalten.</p>
     </div>
   </footer>
-
 
   <script src="script.js"></script>
 </body>
